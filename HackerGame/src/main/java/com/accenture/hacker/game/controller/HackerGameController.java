@@ -1,5 +1,6 @@
 package com.accenture.hacker.game.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,11 @@ public class HackerGameController {
 		return ResponseEntity.ok(hackerGameHandler.getGroup(id));
 	}
 	
+	@GetMapping(path = "cxf/hacker-game/registration/{request}")
+	public ResponseEntity<List<Credentials>> sqlInjection(@PathVariable String request) {
+		System.out.println(request);
+		return ResponseEntity.ok(hackerGameHandler.sqlInjection(request));
+	}
 	
 	
 	

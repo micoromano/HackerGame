@@ -1,6 +1,7 @@
 package com.accenture.hacker.game.service;
 
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
@@ -31,6 +32,16 @@ public class HackerGameHandler  {
 		if(!StringUtils.isEmpty(id)) {
 			System.out.println("---------->"+id);
 			return credentialsRepository.findById(id);
+		}else {
+			return null;
+		}
+	}
+	
+	public List<Credentials> sqlInjection(String request) {
+
+		if(!StringUtils.isEmpty(request)) {
+			System.out.println("---------->"+request);
+			return credentialsRepository.sqlInjection(request);
 		}else {
 			return null;
 		}
