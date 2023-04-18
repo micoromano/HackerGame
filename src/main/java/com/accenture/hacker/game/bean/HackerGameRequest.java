@@ -1,9 +1,13 @@
 package com.accenture.hacker.game.bean;
 
+import javax.validation.constraints.NotNull;
+
 public class HackerGameRequest {
 
-	
+	@NotNull(message="The groupName can not be null")
 	private String groupName;
+	
+	@NotNull(message="The password can not be null")
 	private String password;
 	
 	
