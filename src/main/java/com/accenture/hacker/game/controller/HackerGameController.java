@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.accenture.hacker.game.bean.HackerGameRequest;
@@ -25,14 +26,14 @@ public class HackerGameController {
 	
 	
 	@PostMapping
-	public ResponseEntity<Credentials> saveGroup(@Valid @RequestBody HackerGameRequest request) {
+	public ResponseEntity<Credentials> saveGroup(@Valid @RequestBody HackerGameRequest request) throws Exception {
 		return ResponseEntity.ok(hackerGameHandler.addingGroup(request));
 		
 	}
 	
-	@GetMapping("/{id}")
-	public Credentials getGroup(@PathVariable(value = "id")String id) {
-		return hackerGameHandler.getGroupById(id);
+	@GetMapping
+	public Credentials getGroup(@RequestParam(value = "groupName")String groupName) {
+		return hackerGameHandler.getGroupByGroupName(groupName);
 	}
 	
 	

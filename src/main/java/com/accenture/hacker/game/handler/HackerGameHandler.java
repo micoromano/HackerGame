@@ -13,23 +13,25 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 @Repository
 public class HackerGameHandler extends HackerGameService  {
 
-
-
-	public Credentials addingGroup(HackerGameRequest request)  {
-		
-		Credentials credentials = preparingRequestToSendIt(request);
-		save(credentials);
-		return credentials;
-		
+	public Credentials addingGroup(HackerGameRequest request) throws Exception  {
+		Credentials credentials = new Credentials();
+		credentials = getGroupByGroupName(request.getGroupName());
+		if(credentials == null) {
+			credentials = preparingRequestToSendIt(request);
+			save(credentials);
+			return credentials;
+		}else {
+			throw new Exception("The group name already exist");
+		}
 	}
 
-	public Credentials getGroupById(String id) {
-		return load(Credentials.class,id);
+	public Credentials getGroupByGroupName(String groupName) {
+		return load(Credentials.class,groupName);
 	}
 	
-
 	public HackerGameHandler(AmazonDynamoDB dynamoDB) {
 		super(dynamoDB);
+		// TODO Auto-generated constructor stub
 	}
 	
 }
