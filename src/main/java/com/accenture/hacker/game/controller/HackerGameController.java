@@ -17,7 +17,7 @@ import com.accenture.hacker.game.entity.Credentials;
 import com.accenture.hacker.game.handler.HackerGameHandler;
 
 @RestController
-@RequestMapping("cxf/hacker-game/login")
+@RequestMapping("cxf/hacker-game/home")
 public class HackerGameController {
 
 	
@@ -25,7 +25,7 @@ public class HackerGameController {
 	HackerGameHandler hackerGameHandler;
 	
 	
-	@PostMapping
+	@PostMapping("/saveGroup")
 	public ResponseEntity<Credentials> saveGroup(@Valid @RequestBody HackerGameRequest request) throws Exception {
 		return ResponseEntity.ok(hackerGameHandler.addingGroup(request));
 		
@@ -34,6 +34,11 @@ public class HackerGameController {
 	@GetMapping
 	public Credentials getGroup(@RequestParam(value = "groupName")String groupName) {
 		return hackerGameHandler.getGroupByGroupName(groupName);
+	}
+	
+	@PostMapping("/login")
+	public ResponseEntity<Credentials> login(@RequestBody HackerGameRequest request) throws Exception {
+		return  ResponseEntity.ok(hackerGameHandler.login(request));
 	}
 	
 	

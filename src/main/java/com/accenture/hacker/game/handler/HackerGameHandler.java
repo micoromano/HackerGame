@@ -29,6 +29,16 @@ public class HackerGameHandler extends HackerGameService  {
 		return load(Credentials.class,groupName);
 	}
 	
+	public Credentials login(HackerGameRequest request) throws Exception {
+		Credentials gruppoLoggato= load(Credentials.class,request.getGroupName());
+		if(gruppoLoggato!=null && gruppoLoggato.getPassword().equals(request.getPassword())) {
+			return gruppoLoggato;
+		}
+		else {
+			throw new Exception("Username o password errati");
+		}		 
+	}
+	
 	public HackerGameHandler(AmazonDynamoDB dynamoDB) {
 		super(dynamoDB);
 		// TODO Auto-generated constructor stub
