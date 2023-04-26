@@ -21,6 +21,7 @@ public class Credentials {
 	private String groupName;
 	
 	@DynamoDBAttribute(attributeName = "password")
+	@DynamoDBHashKey
 	private String password;
 	
 	public String getId() {

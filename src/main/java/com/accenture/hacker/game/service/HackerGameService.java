@@ -20,7 +20,6 @@ public class HackerGameService extends DynamoDBMapper  {
 	
 	public HackerGameService(AmazonDynamoDB dynamoDB) {
 		super(dynamoDB);
-		// TODO Auto-generated constructor stub
 	}
 	
 	
